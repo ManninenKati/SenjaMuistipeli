@@ -7,6 +7,9 @@ const MAX_RETRIES = 12;
 const headers = {
   "content-type": "application/json; charset=utf-8",
   "cache-control": "no-store, max-age=0",
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET, POST, OPTIONS",
+  "access-control-allow-headers": "content-type",
 };
 
 function cleanCounts(value) {
@@ -56,6 +59,7 @@ async function increment(store, field) {
 }
 
 export default async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { status: 204, headers });
   const store = getStore({ name: STORE_NAME, consistency: "strong" });
 
   if (req.method === "GET") {
