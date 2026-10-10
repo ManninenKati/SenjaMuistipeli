@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+  command = "echo 'Senjan muistipeli: staattinen sivu + laskurifunktio'"
+
+[functions]
+  node_bundler = "esbuild"
